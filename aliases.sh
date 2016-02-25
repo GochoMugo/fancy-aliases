@@ -31,6 +31,16 @@ alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
 
+# hub
+alias ghcr='hub create'
+alias ghf='hub fork'
+alias ghi='hub issue'
+alias ghpr='hub pull-request'
+alias ghr='hub release'
+alias ghrc='hub release create'
+alias ghs='hub ci-status'
+alias ghv='hub browse'
+
 # ls
 alias ll='ls -l'
 alias la='ls -A'
