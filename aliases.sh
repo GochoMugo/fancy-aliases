@@ -5,6 +5,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+# clear
+alias cls="clear"
+
 # git
 alias ga='git add'
 alias gbr='git branch'

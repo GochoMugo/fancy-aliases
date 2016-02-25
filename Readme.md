@@ -14,6 +14,10 @@ the [`aliases.sh`][script] file instead. It is simple!
 1. `...`: move two directories up
 1. `....`: move three directories up
 
+**clear**:
+
+1. `cls`: `clear`
+
 **git**:
 
 1. `ga`: `git add`
