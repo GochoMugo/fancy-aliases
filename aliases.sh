@@ -71,6 +71,7 @@ alias ssv.i='sudo /etc/init.d/supervisor start'
 alias ssv.r='sudo supervisorctl reload'
 alias ssv.s='sudo supervisorctl start'
 alias ssv.t='sudo supervisorctl status'
+alias ssv.x='sudo supervisorctl stop'
 
 # system updates
 alias update='sudo apt-get update'
