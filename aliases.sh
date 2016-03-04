@@ -57,6 +57,7 @@ alias hgrm='hg remove'
 alias hgs='hg status'
 alias hgu='hg push'
 alias hguu='hg push --new-branch'
+alias hgx='hg commit --close-branch'
 
 # npm
 alias npmb='npm run build'
