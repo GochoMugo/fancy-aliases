@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
+# ---------------------------------------------------------------------- #
 # cd
+# ---------------------------------------------------------------------- #
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+
+# ---------------------------------------------------------------------- #
 # clear
+# ---------------------------------------------------------------------- #
 alias cls="clear"
 
+
+# ---------------------------------------------------------------------- #
 # git
+# ---------------------------------------------------------------------- #
 alias ga='git add'
 alias gbr='git branch'
 alias gc='git commit'
@@ -31,7 +39,10 @@ alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
 
+
+# ---------------------------------------------------------------------- #
 # hub
+# ---------------------------------------------------------------------- #
 alias ghcr='hub create'
 alias ghf='hub fork'
 alias ghi='hub issue'
@@ -41,12 +52,18 @@ alias ghrc='hub release create'
 alias ghs='hub ci-status'
 alias ghv='hub browse'
 
+
+# ---------------------------------------------------------------------- #
 # ls
+# ---------------------------------------------------------------------- #
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+
+# ---------------------------------------------------------------------- #
 # mercurial
+# ---------------------------------------------------------------------- #
 alias hga='hg add'
 alias hgc='hg commit'
 alias hgdf='hg diff | less'
@@ -59,14 +76,20 @@ alias hgu='hg push'
 alias hguu='hg push --new-branch'
 alias hgx='hg commit --close-branch'
 
+
+# ---------------------------------------------------------------------- #
 # npm
+# ---------------------------------------------------------------------- #
 alias npmb='npm run build'
 alias npmc='npm run clean'
 alias npmr='npm run'
 alias npms='npm start'
 alias npmt='npm test'
 
+
+# ---------------------------------------------------------------------- #
 # supervisord
+# ---------------------------------------------------------------------- #
 alias ssv='sudo supervisorctl'
 alias ssv.i='sudo /etc/init.d/supervisor start'
 alias ssv.r='sudo supervisorctl reload'
@@ -74,7 +97,10 @@ alias ssv.s='sudo supervisorctl start'
 alias ssv.t='sudo supervisorctl status'
 alias ssv.x='sudo supervisorctl stop'
 
+
+# ---------------------------------------------------------------------- #
 # system updates
+# ---------------------------------------------------------------------- #
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get update && \
     sudo apt-get -y upgrade && \
