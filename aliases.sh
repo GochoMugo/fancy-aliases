@@ -65,7 +65,9 @@ alias l='ls -CF'
 # mercurial
 # ---------------------------------------------------------------------- #
 alias hga='hg add'
+alias hgbr='hg heads'
 alias hgc='hg commit'
+alias hgch='hg update'
 alias hgdf='hg diff | less'
 alias hgf='hg forget'
 alias hgl="hg log --limit 10 --template '{rev}: {desc|firstline}\n'"
