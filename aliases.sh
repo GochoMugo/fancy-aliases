@@ -17,17 +17,19 @@ alias cls="clear"
 # ---------------------------------------------------------------------- #
 # git
 # ---------------------------------------------------------------------- #
+# HELP: set '${FA_git_sign}' to a string, to have your commits signed
+[[ -n "${FA_git_sign}" ]] && FA__git_sign="-S"
 alias ga='git add'
 alias gbr='git branch'
-alias gc='git commit'
-alias gca='git commit --amend'
+alias gc="git commit ${FA__git_sign}"
+alias gca="git commit ${FA__git_sign} --amend"
 alias gch='git checkout'
 alias gcl='git clone'
 alias gclf='git clone --depth 1'
 alias gdf='git diff'
 alias gdfc='git diff --cached'
 alias gl='git log --pretty=oneline'
-alias gm='git merge --no-ff'
+alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
 alias gp='git pull'
 alias grb='git rebase --interactive'
