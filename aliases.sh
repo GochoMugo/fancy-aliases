@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 
+
+# metadata
+FA__version=0.0.0
+
+
+# ---------------------------------------------------------------------- #
+# Showing help information
+# ---------------------------------------------------------------------- #
+fancy-aliases() {
+    echo
+    echo " fancy-aliases v${FA__version}"
+    echo
+    echo " Available options:"
+    grep -E '^# HELP: ' ${BASH_SOURCE[0]} | sed s/\#\ HELP:/\ \ /
+    echo
+    echo " See https://github.com/GochoMugo/fancy-aliases for more info."
+    echo
+}
+
+
 # ---------------------------------------------------------------------- #
 # cd
 # ---------------------------------------------------------------------- #
@@ -17,7 +37,7 @@ alias cls="clear"
 # ---------------------------------------------------------------------- #
 # git
 # ---------------------------------------------------------------------- #
-# HELP: set '${FA_git_sign}' to a string, to have your commits PGP-signed
+# HELP: '${FA_git_sign}' as a set variable to have your Git commits PGP-signed
 [[ -n "${FA_git_sign}" ]] && FA__git_sign="-S"
 alias ga='git add'
 alias gbr='git branch'
@@ -94,9 +114,9 @@ alias npmt='npm test'
 # ---------------------------------------------------------------------- #
 # supervisord
 # ---------------------------------------------------------------------- #
-# HELP: set '${FA_supervisord_use_sudo}' to use 'sudo'
+# HELP: '${FA_supervisord_use_sudo}' as a set variable to use `sudo` with `supervisord`
 [[ -n "${FA_supervisord_use_sudo}" ]] && FA__supervisord_sudo='sudo'
-# HELP: set '${FA_supervisord_conf}' to a path to a config file
+# HELP: '${FA_supervisord_conf}' as a path to a config file for `supervisord` and `supervisorctl`
 [[ -n "${FA_supervisord_conf}" ]] && FA__supervisord_conf="-c '${FA_supervisord_conf}'"
 alias ssv="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf}"
 alias ssv.i="${FA__supervisord_sudo} supervisord ${FA__supervisord_conf}"
@@ -110,9 +130,9 @@ alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 # ---------------------------------------------------------------------- #
 # system updates
 # ---------------------------------------------------------------------- #
-# HELP: set '${FA_apt_use_sudo}' to use 'sudo'
+# HELP: '${FA_apt_no_sudo}' as a set variable to use `sudo` with `apt-get`
 [[ -n "${FA_apt_no_sudo}" ]] || FA__apt_sudo='sudo'
-# HELP: set '${FA_apt_assume_yes}' to have `apt` assume yes
+# HELP: '${FA_apt_assume_yes}' as a set variable to `apt` assume yes
 [[ -n "${FA_apt_assume_yes}" ]] && FA__apt_assume_yes='-y'
 alias update="${FA__apt_sudo} apt-get update"
 alias upgrade="\

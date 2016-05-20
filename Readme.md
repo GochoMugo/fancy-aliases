@@ -37,6 +37,15 @@ Installation options:
 1. You may simply download the [aliases.sh][script] and source it in your `~/.bashrc`
 
 
+## help information:
+
+Just:
+
+```bash
+$ fancy-aliases
+```
+
+
 ## license:
 
 **The MIT License (MIT)**
