@@ -17,7 +17,7 @@ alias cls="clear"
 # ---------------------------------------------------------------------- #
 # git
 # ---------------------------------------------------------------------- #
-# HELP: set '${FA_git_sign}' to a string, to have your commits signed
+# HELP: set '${FA_git_sign}' to a string, to have your commits PGP-signed
 [[ -n "${FA_git_sign}" ]] && FA__git_sign="-S"
 alias ga='git add'
 alias gbr='git branch'
@@ -94,19 +94,29 @@ alias npmt='npm test'
 # ---------------------------------------------------------------------- #
 # supervisord
 # ---------------------------------------------------------------------- #
-alias ssv='sudo supervisorctl'
-alias ssv.i='sudo /etc/init.d/supervisor start'
-alias ssv.r='sudo supervisorctl reload'
-alias ssv.s='sudo supervisorctl start'
-alias ssv.t='sudo supervisorctl status'
-alias ssv.x='sudo supervisorctl stop'
+# HELP: set '${FA_supervisord_use_sudo}' to use 'sudo'
+[[ -n "${FA_supervisord_use_sudo}" ]] && FA__supervisord_sudo='sudo'
+# HELP: set '${FA_supervisord_conf}' to a path to a config file
+[[ -n "${FA_supervisord_conf}" ]] && FA__supervisord_conf="-c '${FA_supervisord_conf}'"
+alias ssv="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf}"
+alias ssv.i="${FA__supervisord_sudo} supervisord ${FA__supervisord_conf}"
+alias ssv.r="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} reload"
+alias ssv.s="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} start"
+alias ssv.t="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} status"
+alias ssv.x="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} stop"
+alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 
 
 # ---------------------------------------------------------------------- #
 # system updates
 # ---------------------------------------------------------------------- #
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get update && \
-    sudo apt-get -y upgrade && \
-    sudo apt-get -y dist-upgrade && \
-    sudo apt-get -y autoremove'
+# HELP: set '${FA_apt_use_sudo}' to use 'sudo'
+[[ -n "${FA_apt_no_sudo}" ]] || FA__apt_sudo='sudo'
+# HELP: set '${FA_apt_assume_yes}' to have `apt` assume yes
+[[ -n "${FA_apt_assume_yes}" ]] && FA__apt_assume_yes='-y'
+alias update="${FA__apt_sudo} apt-get update"
+alias upgrade="\
+    ${FA__apt_sudo} apt-get update && \
+    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} upgrade && \
+    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} dist-upgrade && \
+    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} autoremove"
