@@ -40,6 +40,7 @@ alias cls="clear"
 # HELP: '${FA_git_sign}' as a set variable to have your Git commits PGP-signed
 [[ -n "${FA_git_sign}" ]] && FA__git_sign="-S"
 alias ga='git add'
+alias gap='git add --patch'
 alias gbr='git branch'
 alias gc="git commit ${FA__git_sign}"
 alias gca="git commit ${FA__git_sign} --amend"
