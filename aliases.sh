@@ -12,8 +12,12 @@ fancy-aliases() {
     echo
     echo " fancy-aliases v${FA__version}"
     echo
+    echo " Available aliases:"
+    echo
+    grep -Eo 'alias (\w+)' "${BASH_SOURCE[0]}" | sed s/alias\ /\ \ / | column
+    echo
     echo " Available options:"
-    grep -E '^# HELP: ' ${BASH_SOURCE[0]} | sed s/\#\ HELP:/\ \ /
+    grep -E '^# HELP: ' "${BASH_SOURCE[0]}" | sed s/\#\ HELP:/\ \ /
     echo
     echo " See https://github.com/GochoMugo/fancy-aliases for more info."
     echo
@@ -133,7 +137,7 @@ alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 # ---------------------------------------------------------------------- #
 # system updates
 # ---------------------------------------------------------------------- #
-# HELP: '${FA_apt_no_sudo}' as a set variable to use `sudo` with `apt-get`
+# HELP: '${FA_apt_no_sudo}' as a set variable to not use `sudo` with `apt-get`
 [[ -n "${FA_apt_no_sudo}" ]] || FA__apt_sudo='sudo'
 # HELP: '${FA_apt_assume_yes}' as a set variable to `apt` assume yes
 [[ -n "${FA_apt_assume_yes}" ]] && FA__apt_assume_yes='-y'
