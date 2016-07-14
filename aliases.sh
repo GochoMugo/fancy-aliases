@@ -2,7 +2,7 @@
 
 
 # metadata
-FA__version=0.2.1
+FA__version=0.3.0
 
 
 # ---------------------------------------------------------------------- #
@@ -53,10 +53,10 @@ alias gcl='git clone'
 alias gclf='git clone --depth 1'
 alias gdf='git diff'
 # HELP: 'gdfs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
-alias gdfs='git diff --color | diff-so-fancy'
+alias gdfs='git diff --color | diff-so-fancy | less -RFXS'
 alias gdfc='git diff --cached'
 # HELP: 'gdfcs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
-alias gdfcs='git diff --cached --color | diff-so-fancy'
+alias gdfcs='git diff --cached --color | diff-so-fancy | less -RFXS'
 alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
