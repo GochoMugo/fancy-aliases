@@ -15,6 +15,7 @@ The aliases wrap around the following commands:
 1. **clear**
 1. **git**
 1. **hub**
+1. **ln**
 1. **ls**
 1. **mercurial**
 1. **npm**
