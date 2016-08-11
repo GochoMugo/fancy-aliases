@@ -2,7 +2,7 @@
 
 
 # metadata
-FA__version=0.5.0
+FA__version=0.6.0
 
 
 # ---------------------------------------------------------------------- #
@@ -17,6 +17,7 @@ fancy-aliases() {
     grep -Eo 'alias (\w+)' "${BASH_SOURCE[0]}" | sed s/alias\ /\ \ / | column
     echo
     echo " Available options:"
+    echo
     grep -E '^# HELP: ' "${BASH_SOURCE[0]}" | sed s/\#\ HELP:/\ \ /
     echo
     echo " See https://github.com/GochoMugo/fancy-aliases for more info."
@@ -152,9 +153,11 @@ alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 [[ -n "${FA_apt_no_sudo}" ]] || FA__apt_sudo='sudo'
 # HELP: '${FA_apt_assume_yes}' as a set variable to `apt` assume yes
 [[ -n "${FA_apt_assume_yes}" ]] && FA__apt_assume_yes='-y'
+# HELP: '${FA_apt_purge}' as a set variable to purge during cleanup
+[[ -n "${FA_apt_purge}" ]] && FA__apt_purge='--purge'
 alias update="${FA__apt_sudo} apt-get update"
 alias upgrade="\
     ${FA__apt_sudo} apt-get update && \
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} upgrade && \
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} dist-upgrade && \
-    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} autoremove"
+    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} ${FA__apt_purge} autoremove"
