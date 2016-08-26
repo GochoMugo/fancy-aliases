@@ -2,7 +2,7 @@
 
 
 # metadata
-FA__version=0.6.1
+FA__version=0.7.0
 
 
 # ---------------------------------------------------------------------- #
@@ -47,6 +47,14 @@ alias cls="clear"
 alias ga='git add'
 alias gap='git add --patch'
 alias gbr='git branch'
+alias gbrd='git branch -d'
+function FA__gbrdd() {
+    for branch in "${@}" ; do
+        echo "Deleting local ${branch} branch" && git branch -d "${branch}"
+        echo "Deleting remote ${branch} branch" && git push origin ":${branch}"
+    done
+}
+alias gbrdd='FA__gbrdd'
 alias gc="git commit ${FA__git_sign}"
 alias gca="git commit ${FA__git_sign} --amend"
 alias gch='git checkout'
