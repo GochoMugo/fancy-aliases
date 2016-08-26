@@ -2,7 +2,7 @@
 
 
 # metadata
-FA__version=0.6.0
+FA__version=0.6.1
 
 
 # ---------------------------------------------------------------------- #
@@ -43,7 +43,7 @@ alias cls="clear"
 # git
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_git_sign}' as a set variable to have your Git commits PGP-signed
-[[ -n "${FA_git_sign}" ]] && FA__git_sign="-S"
+[[ -n "${FA_git_sign:-}" ]] && FA__git_sign="-S"
 alias ga='git add'
 alias gap='git add --patch'
 alias gbr='git branch'
@@ -54,11 +54,11 @@ alias gcl='git clone'
 alias gclf='git clone --depth 1'
 alias gdf='git diff'
 # HELP: 'gdfs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
-function FA__gdfs() { git diff --color ${*} | diff-so-fancy | less -RFXS ; }
+function FA__gdfs() { git diff --color "${@}" | diff-so-fancy | less -RFXS ; }
 alias gdfs='FA__gdfs'
 alias gdfc='git diff --cached'
 # HELP: 'gdfcs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
-function FA__gdfcs() { git diff --cached --color ${*} | diff-so-fancy | less -RFXS ; }
+function FA__gdfcs() { git diff --cached --color "${@}" | diff-so-fancy | less -RFXS ; }
 alias gdfcs='FA__gdfcs'
 alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
@@ -90,7 +90,7 @@ alias ghv='hub browse'
 # ---------------------------------------------------------------------- #
 # ln
 # ---------------------------------------------------------------------- #
-function FA__lns() { ln -sf `readlink -f "${1}"` `readlink -f "${2}"` ; }
+function FA__lns() { ln -sf "$(readlink -f "${1}")" "$(readlink -f "${2}")" ; }
 alias lns="FA__lns"
 
 
@@ -134,9 +134,9 @@ alias npmt='npm test'
 # supervisord
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_supervisord_use_sudo}' as a set variable to use `sudo` with `supervisord`
-[[ -n "${FA_supervisord_use_sudo}" ]] && FA__supervisord_sudo='sudo'
+[[ -n "${FA_supervisord_use_sudo:-}" ]] && FA__supervisord_sudo='sudo'
 # HELP: '${FA_supervisord_conf}' as a path to a config file for `supervisord` and `supervisorctl`
-[[ -n "${FA_supervisord_conf}" ]] && FA__supervisord_conf="-c '${FA_supervisord_conf}'"
+[[ -n "${FA_supervisord_conf:-}" ]] && FA__supervisord_conf="-c '${FA_supervisord_conf}'"
 alias ssv="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf}"
 alias ssv.i="${FA__supervisord_sudo} supervisord ${FA__supervisord_conf}"
 alias ssv.r="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} reload"
@@ -150,11 +150,11 @@ alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 # system updates
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_apt_no_sudo}' as a set variable to not use `sudo` with `apt-get`
-[[ -n "${FA_apt_no_sudo}" ]] || FA__apt_sudo='sudo'
+[[ -n "${FA_apt_no_sudo:-}" ]] || FA__apt_sudo='sudo'
 # HELP: '${FA_apt_assume_yes}' as a set variable to `apt` assume yes
-[[ -n "${FA_apt_assume_yes}" ]] && FA__apt_assume_yes='-y'
+[[ -n "${FA_apt_assume_yes:-}" ]] && FA__apt_assume_yes='-y'
 # HELP: '${FA_apt_purge}' as a set variable to purge during cleanup
-[[ -n "${FA_apt_purge}" ]] && FA__apt_purge='--purge'
+[[ -n "${FA_apt_purge:-}" ]] && FA__apt_purge='--purge'
 alias update="${FA__apt_sudo} apt-get update"
 alias upgrade="\
     ${FA__apt_sudo} apt-get update && \
