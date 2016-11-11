@@ -2,7 +2,7 @@
 
 
 # metadata
-FA__version=0.7.0
+FA__version=0.8.0
 
 
 # ---------------------------------------------------------------------- #
@@ -73,6 +73,7 @@ alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
 alias gp='git pull'
 alias grb='git rebase --interactive'
+alias grbc='git rebase --continue'
 alias gre='git reset'
 alias grem='git remote'
 alias grm='git rm'
