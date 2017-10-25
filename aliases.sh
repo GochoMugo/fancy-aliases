@@ -141,6 +141,7 @@ alias hgx='hg commit --close-branch'
 # ---------------------------------------------------------------------- #
 alias npmb='npm run build'
 alias npmc='npm run clean'
+alias npmh='npm home'
 alias npmr='npm run'
 alias npms='npm start'
 alias npmt='npm test'
