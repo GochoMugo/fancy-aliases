@@ -40,6 +40,13 @@ alias cls="clear"
 
 
 # ---------------------------------------------------------------------- #
+# docker
+# ---------------------------------------------------------------------- #
+alias dkci='docker rmi $(docker images -f dangling=true -q)'
+alias dkcc='docker rm $(docker ps -a -f status=exited -q)'
+
+
+# ---------------------------------------------------------------------- #
 # git
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_git_sign}' as a set variable to have your Git commits PGP-signed

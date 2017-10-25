@@ -13,6 +13,7 @@ The aliases wrap around the following commands:
 1. **apt-get**
 1. **cd**
 1. **clear**
+1. **docker**
 1. **git**
 1. **hub**
 1. **ln**
