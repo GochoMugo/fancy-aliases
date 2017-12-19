@@ -50,7 +50,7 @@ alias dklf='docker logs --follow'
 # ---------------------------------------------------------------------- #
 # git
 # ---------------------------------------------------------------------- #
-# HELP: '${FA_git_sign}' as a set variable to have your Git commits PGP-signed
+# HELP: '${FA_git_sign}' as a set variable to have your Git commits and tags PGP-signed
 [[ -n "${FA_git_sign:-}" ]] && FA__git_sign="-S"
 alias ga='git add'
 alias gap='git add --patch'
@@ -86,7 +86,7 @@ alias gre='git reset'
 alias grem='git remote'
 alias grm='git rm'
 alias gs='git status --short'
-alias gt='git tag --annotate --sign'
+alias gt="git tag --annotate ${FA_git_sign:+--sign}"
 alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
