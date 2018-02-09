@@ -181,3 +181,9 @@ alias upgrade="\
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} upgrade && \
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} dist-upgrade && \
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} ${FA__apt_purge} autoremove"
+
+
+# ---------------------------------------------------------------------- #
+# xclip
+# ---------------------------------------------------------------------- #
+alias clip='xclip -selection clipboard'
