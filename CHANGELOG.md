@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Added:
+
+1. **xclip**: `clip`
 
 
 ## [0.10.0][0.10.0] - 2017-12-21
