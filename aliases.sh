@@ -97,6 +97,8 @@ function FA__gzd() {
     git stash drop
 }
 alias gzd='FA__gzd'
+alias gzl='git stash list'
+alias gzp='git stash pop'
 
 
 # ---------------------------------------------------------------------- #
