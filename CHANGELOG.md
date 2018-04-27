@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 Added:
 
 1. **xclip**: `clip`
+1. **npm**: `npmp`
 
 
 ## [0.10.0][0.10.0] - 2017-12-21
