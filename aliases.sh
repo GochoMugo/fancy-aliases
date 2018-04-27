@@ -90,6 +90,13 @@ alias gt="git tag --annotate ${FA_git_sign:+--sign}"
 alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
+alias gz='git stash save --include-untracked'
+alias gzc='gz --keep-index'
+function FA__gzd() {
+    msu run console.yes_no "Drop a stash; you will lose un-committed work" || return 1
+    git stash drop
+}
+alias gzd='FA__gzd'
 
 
 # ---------------------------------------------------------------------- #
