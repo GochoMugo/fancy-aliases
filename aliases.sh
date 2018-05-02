@@ -98,7 +98,14 @@ function FA__gzd() {
 }
 alias gzd='FA__gzd'
 alias gzl='git stash list'
-alias gzp='git stash pop'
+function FA__gzp() {
+    local args=($@)
+    if [[ "${@: -1}" =~ ^-?[0-9]+$ ]] ; then
+        args[-1]="stash@{${args[-1]}}"
+    fi
+    git stash pop ${args[@]}
+}
+alias gzp='FA__gzp'
 
 
 # ---------------------------------------------------------------------- #
