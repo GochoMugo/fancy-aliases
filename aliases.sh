@@ -171,6 +171,7 @@ alias npmb='npm run build'
 alias npmc='npm run clean'
 alias npmd='npm run doc'
 alias npmh='npm home'
+alias npmic='npm install --no-save' # "npm install clean"
 alias npmp='npm pack'
 alias npmr='npm run'
 alias npms='npm start'
