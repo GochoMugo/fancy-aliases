@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+
+## [0.12.0][0.12.0] - 2018-06-22
+
 Added:
 
 1. **npm**: `npmid`
@@ -34,4 +38,5 @@ Added:
 
 [0.10.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.10.0
 [0.11.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.11.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.11.0...master
+[0.12.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.12.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.12.0...master
