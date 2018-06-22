@@ -87,6 +87,7 @@ alias grem='git remote'
 alias grm='git rm'
 alias gs='git status --short'
 alias gt="git tag --annotate ${FA_git_sign:+--sign}"
+alias gtl='git tag --list'
 alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
