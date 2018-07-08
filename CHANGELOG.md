@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
-1. **git**: `gtl`
+1. **git**: `gtl`, `gza`
 
 
 ## [0.12.0][0.12.0] - 2018-06-22
