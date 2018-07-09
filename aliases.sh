@@ -53,6 +53,8 @@ alias dklf='docker logs --follow'
 # HELP: '${FA_git_sign}' as a set variable to have your Git commits and tags PGP-signed
 [[ -n "${FA_git_sign:-}" ]] && FA__git_sign="-S"
 alias ga='git add'
+alias gam="git am ${FA__git_sign}"
+alias gamc='git am --continue'
 alias gap='git add --patch'
 alias gbr='git branch'
 alias gbrd='git branch -d'
@@ -76,6 +78,7 @@ alias gdfc='git diff --cached'
 # HELP: 'gdfcs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
 function FA__gdfcs() { git diff --cached --color "${@}" | diff-so-fancy | less -RFXS ; }
 alias gdfcs='FA__gdfcs'
+alias gfp='git format-patch --binary --output-directory=_patches'
 alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
