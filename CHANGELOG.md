@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.13.0][0.13.0] - 2018-07-13
+
 Added:
 
 1. **git**: `gam`, `gamc`, `gfp`, `gtl`, `gza`
@@ -42,4 +45,5 @@ Added:
 [0.10.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.10.0
 [0.11.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.11.0
 [0.12.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.12.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.12.0...master
+[0.13.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.13.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.13.0...master
