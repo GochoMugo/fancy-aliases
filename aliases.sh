@@ -106,7 +106,7 @@ alias gza='FA__gz apply' # git stash apply
 alias gzc='gz --keep-index'
 function FA__gzd() {
     msu run console.yes_no "Drop a stash; you will lose un-committed work" || return 1
-    git stash drop
+    FA__gz drop ${@}
 }
 alias gzd='FA__gzd'
 alias gzl='git stash list'

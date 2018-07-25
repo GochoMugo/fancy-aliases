@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Changed:
+
+1. **git**: Allow passing a stash index to `gzd`
+
 
 ## [0.13.0][0.13.0] - 2018-07-13
 
