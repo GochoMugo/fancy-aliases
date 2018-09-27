@@ -83,7 +83,7 @@ alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
 alias gp='git pull'
-alias grb='git rebase --interactive'
+alias grb="git rebase --interactive ${FA__git_sign}"
 alias grbc='git rebase --continue'
 alias gre='git reset'
 alias grem='git remote'

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 Changed:
 
 1. **git**: Allow passing a stash index to `gzd`
+1. **git**: Sign commits in `grb` (`git rebase`)
 
 
 ## [0.13.0][0.13.0] - 2018-07-13
