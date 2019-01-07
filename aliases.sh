@@ -220,4 +220,4 @@ alias upgrade="\
 # ---------------------------------------------------------------------- #
 # xclip
 # ---------------------------------------------------------------------- #
-alias clip='xclip -selection clipboard'
+alias clip='tr --delete \\n | xclip -selection clipboard'

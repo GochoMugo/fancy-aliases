@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Changed:
+
+1. **xclip**: `clip` removes newlines before copying to clipboard.
+
 
 ## [0.14.0][0.14.0] - 2018-11-18
 
