@@ -20,6 +20,7 @@ The aliases wrap around the following commands:
 1. **ls**
 1. **mercurial**
 1. **npm**
+1. **pip**
 1. **supervisord**
 1. **xclip**
 
