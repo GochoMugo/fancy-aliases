@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.15.0][0.15.0] - 2019-01-14
+
 Added:
 
 1. **pip**: `pipg`
@@ -63,4 +66,5 @@ Added:
 [0.12.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.12.0
 [0.13.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.13.0
 [0.14.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.14.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.14.0...master
+[0.15.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.15.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.15.0...master
