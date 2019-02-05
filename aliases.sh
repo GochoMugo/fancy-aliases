@@ -226,4 +226,7 @@ alias upgrade="\
 # ---------------------------------------------------------------------- #
 # xclip
 # ---------------------------------------------------------------------- #
-alias clip='tr --delete \\n | xclip -selection clipboard'
+alias clip='\
+    tr --delete \\n | \
+    xclip -selection clipboard | \
+    echo "$(xclip -selection clipboard -out)"'
