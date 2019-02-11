@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.16.0][0.16.0] - 2019-02-11
+
 Changed:
 
 1. **xclip**: `clip` prints to stdout the copied selection
@@ -71,4 +74,5 @@ Added:
 [0.13.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.13.0
 [0.14.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.14.0
 [0.15.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.15.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.15.0...master
+[0.16.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.16.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.16.0...master
