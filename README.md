@@ -19,6 +19,7 @@ The aliases wrap around the following commands:
 1. **ln**
 1. **ls**
 1. **mercurial**
+1. **mkdir**
 1. **npm**
 1. **pip**
 1. **supervisord**
