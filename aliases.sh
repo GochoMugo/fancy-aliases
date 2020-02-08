@@ -187,6 +187,7 @@ alias npmt='npm test'
 # ---------------------------------------------------------------------- #
 # pip
 # ---------------------------------------------------------------------- #
+alias pip3g='PIP_REQUIRE_VIRTUALENV= pip3 install --user'
 alias pipg='PIP_REQUIRE_VIRTUALENV= pip install --user'
 
 

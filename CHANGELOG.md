@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Added:
+
+1. **pip**: `pip3g`
+
 Changed:
 
 1. **mkdir**: `mkd` allows passing paths prefixed with a hypen (`-`).
