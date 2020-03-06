@@ -12,6 +12,7 @@ Added:
 
 1. **angular**: `ngt`
 1. **pip**: `pip3g`
+1. **react-native**: `rn`
 
 Changed:
 

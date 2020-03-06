@@ -200,6 +200,14 @@ alias pipg='PIP_REQUIRE_VIRTUALENV= pip install --user'
 
 
 # ---------------------------------------------------------------------- #
+# react-native
+# ---------------------------------------------------------------------- #
+# HELP: '${FA_rn_no_npx}' as a set variable to not use `npx` with react-native
+[[ -n "${FA_rn_no_npx:-}" ]] || FA__rn_npx='npx'
+alias rn="${FA__rn_npx} react-native"
+
+
+# ---------------------------------------------------------------------- #
 # supervisord
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_supervisord_use_sudo}' as a set variable to use `sudo` with `supervisord`
