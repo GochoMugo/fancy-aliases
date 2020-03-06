@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
+1. **angular**: `ngt`
 1. **pip**: `pip3g`
 
 Changed:

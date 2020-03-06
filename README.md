@@ -10,6 +10,7 @@ Read through the [`aliases.sh`][script] file instead. It is simple!
 
 The aliases wrap around the following CLI apps:
 
+1. **angular**
 1. **apt-get**
 1. **cd**
 1. **clear**
