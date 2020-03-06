@@ -8,7 +8,7 @@
 **Note:** Documenting these aliases is plainly tedious, and **not** worth automating.
 Read through the [`aliases.sh`][script] file instead. It is simple!
 
-The aliases wrap around the following commands:
+The aliases wrap around the following CLI apps:
 
 1. **apt-get**
 1. **cd**
