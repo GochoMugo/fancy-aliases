@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.17.0][0.17.0] - 2020-03-09
+
 Added:
 
 1. **angular**: `ngt`
@@ -85,4 +88,5 @@ Added:
 [0.14.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.14.0
 [0.15.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.15.0
 [0.16.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.16.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.16.0...master
+[0.17.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.17.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.17.0...master
