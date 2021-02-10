@@ -93,6 +93,7 @@ alias gmf='git merge --ff-only'
 alias gp='git pull'
 alias grb="git rebase --interactive ${FA__git_sign}"
 alias grbc='git rebase --continue'
+alias grbe='git rebase --edit-todo'
 alias gre='git reset'
 alias grem='git remote'
 alias grm='git rm'
