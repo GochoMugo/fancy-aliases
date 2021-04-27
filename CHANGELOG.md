@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
-1. **git**: `grbe`
+1. **git**: `gf`, `grbe`
 
 
 ## [0.17.0][0.17.0] - 2020-03-09

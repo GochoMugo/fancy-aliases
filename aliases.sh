@@ -86,6 +86,7 @@ alias gdfc='git diff --cached'
 # HELP: 'gdfcs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
 function FA__gdfcs() { git diff --cached --color "${@}" | diff-so-fancy | less -RFXS ; }
 alias gdfcs='FA__gdfcs'
+alias gf='git fetch'
 alias gfp='git format-patch --binary --output-directory=_patches'
 alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
