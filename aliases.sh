@@ -197,6 +197,9 @@ alias npmp='npm pack'
 alias npmr='npm run'
 alias npms='npm start'
 alias npmt='npm test'
+alias npmtb='npm run test:benchmark'
+alias npmte='npm run test:e2e'
+alias npmtu='npm run test:unit'
 
 
 # ---------------------------------------------------------------------- #

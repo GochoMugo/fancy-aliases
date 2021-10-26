@@ -12,6 +12,7 @@ Added:
 
 1. **docker**: `dke`, `dkps`, `dkrs`, `dks`, `dkx`
 1. **git**: `gf`, `grbe`
+1. **npm**: `npmtb`, `npmte`, `npmtu`
 
 
 ## [0.17.0][0.17.0] - 2020-03-09
