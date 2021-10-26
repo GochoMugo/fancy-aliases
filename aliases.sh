@@ -44,7 +44,10 @@ alias cls="clear"
 # ---------------------------------------------------------------------- #
 alias dkci='docker rmi $(docker images -f dangling=true -q)'
 alias dkcc='docker rm $(docker ps -a -f status=exited -q)'
+alias dke='docker exec -it'
 alias dklf='docker logs --follow'
+alias dkps='docker ps'
+alias dkrs='docker restart'
 alias dks='docker start'
 alias dkx='docker stop'
 
