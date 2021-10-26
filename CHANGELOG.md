@@ -14,6 +14,10 @@ Added:
 1. **git**: `gf`, `grbe`
 1. **npm**: `npmtb`, `npmte`, `npmtu`
 
+Fixed:
+
+1. **git**: Fixed `gzd` throwing error due to unsupported negative array index.
+
 
 ## [0.17.0][0.17.0] - 2020-03-09
 

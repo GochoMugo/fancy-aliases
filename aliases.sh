@@ -102,22 +102,15 @@ alias gu='git push'
 alias guf='git push --force'
 alias guu='git push --set-upstream'
 alias gz='git stash save --include-untracked'
-function FA__gz() {
-    local args=($@)
-    if [[ "${@: -1}" =~ ^-?[0-9]+$ ]] ; then
-        args[-1]="stash@{${args[-1]}}"
-    fi
-    git stash ${args[@]}
-}
-alias gza='FA__gz apply' # git stash apply
+alias gza='git stash apply'
 alias gzc='gz --keep-index'
 function FA__gzd() {
     msu run console.yes_no "Drop a stash; you will lose un-committed work" || return 1
-    FA__gz drop ${@}
+    git stash drop ${@}
 }
 alias gzd='FA__gzd'
 alias gzl='git stash list'
-alias gzp='FA__gz pop' # git stash pop
+alias gzp='git stash pop'
 
 
 # ---------------------------------------------------------------------- #
