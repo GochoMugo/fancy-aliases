@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 Added:
 
 1. **docker**: `dke`, `dkps`, `dkrs`, `dks`, `dkx`
-1. **git**: `gf`, `grbe`
+1. **git**: `gf`, `grbe`, `gtd`
 1. **npm**: `npmtb`, `npmte`, `npmtu`
 
 Fixed:

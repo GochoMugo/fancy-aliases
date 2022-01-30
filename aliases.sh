@@ -97,6 +97,13 @@ alias grem='git remote'
 alias grm='git rm'
 alias gs='git status --short'
 alias gt="git tag --annotate ${FA_git_sign:+--sign}"
+function FA__gtd() {
+    for tag in "${@}" ; do
+        git push origin ":${tag}"
+        git tag --delete "${tag}"
+    done
+}
+alias gtd='FA__gtd'
 alias gtl='git tag --list'
 alias gu='git push'
 alias guf='git push --force'
