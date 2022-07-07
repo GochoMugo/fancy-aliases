@@ -75,6 +75,7 @@ alias gca="git commit ${FA__git_sign} --amend"
 alias gch='git checkout'
 alias gcl='git clone'
 alias gclf='git clone --depth 1'
+alias gcp='git cherry-pick'
 alias gdf='git diff'
 # HELP: 'gdfs' requires 'diff-so-fancy' be installed. See https://github.com/so-fancy/diff-so-fancy.
 function FA__gdfs() { git diff --color "${@}" | diff-so-fancy | less -RFXS ; }
