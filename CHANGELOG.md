@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Added:
 
-1. **docker**: `dke`, `dkps`, `dkrs`, `dks`, `dkx`
+1. **docker**: `dke`, `dkl`, `dkps`, `dkrs`, `dks`, `dkx`
 1. **git**: `gcp`, `gf`, `grbe`, `gtd`
 1. **npm**: `npmtb`, `npmte`, `npmtu`
 
