@@ -12,6 +12,10 @@ Changed:
 
 1. **git**: `guf` and `guu` will use a default remote and branch.
 
+Fixed:
+
+1. **xclip**: Fix incorrect output of copied selection from `clip`.
+
 Removed:
 
 1. **angular**: all aliases.
