@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Changed:
+
+1. **git**: `guf` and `guu` will use a default remote and branch.
+
 Removed:
 
 1. **angular**: all aliases.

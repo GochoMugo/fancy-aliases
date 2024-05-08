@@ -57,6 +57,9 @@ alias dkx='docker stop'
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_git_sign}' as a set variable to have your Git commits and tags PGP-signed
 [[ -n "${FA_git_sign:-}" ]] && FA__git_sign="-S"
+function FA__git_current_branch() {
+    git rev-parse --abbrev-ref HEAD
+}
 alias ga='git add'
 alias gam="git am ${FA__git_sign}"
 alias gamc='git am --continue'
@@ -107,8 +110,18 @@ function FA__gtd() {
 alias gtd='FA__gtd'
 alias gtl='git tag --list'
 alias gu='git push'
-alias guf='git push --force'
-alias guu='git push --set-upstream'
+function FA__guf() {
+    local remote="${1:-origin}"
+    local branch="${2:-$(FA__git_current_branch)}"
+    git push --force "${remote}" "${branch}"
+}
+alias guf='FA__guf'
+function FA__guu() {
+    local remote="${1:-origin}"
+    local branch="${2:-$(FA__git_current_branch)}"
+    git push --set-upstream "${remote}" "${branch}"
+}
+alias guu='FA__guu'
 alias gz='git stash save --include-untracked'
 alias gza='git stash apply'
 alias gzc='gz --keep-index'
