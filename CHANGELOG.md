@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.19.0][0.19.0] - 2024-05-08
+
 Changed:
 
 1. **git**: `guf` and `guu` will use a default remote and branch.
@@ -122,4 +125,5 @@ Added:
 [0.16.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.16.0
 [0.17.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.17.0
 [0.18.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.18.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.18.0...master
+[0.19.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.19.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.19.0...master
