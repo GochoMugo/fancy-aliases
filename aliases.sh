@@ -45,7 +45,6 @@ alias cls="clear"
 alias dkci='docker rmi $(docker images -f dangling=true -q)'
 alias dkcc='docker rm $(docker ps -a -f status=exited -q)'
 alias dke='docker exec -it'
-alias dkl='docker logs --follow --tail 250'
 alias dklf='docker logs --follow'
 alias dkps='docker ps'
 alias dkrs='docker restart'
@@ -123,19 +122,6 @@ alias gzp='git stash pop'
 
 
 # ---------------------------------------------------------------------- #
-# hub
-# ---------------------------------------------------------------------- #
-alias ghcr='hub create'
-alias ghf='hub fork'
-alias ghi='hub issue'
-alias ghpr='hub pull-request'
-alias ghr='hub release'
-alias ghrc='hub release create'
-alias ghs='hub ci-status'
-alias ghv='hub browse'
-
-
-# ---------------------------------------------------------------------- #
 # ln
 # ---------------------------------------------------------------------- #
 function FA__lns() { ln -sf "$(readlink -f "${1}")" "$(readlink -f "${2}")" ; }
@@ -151,24 +137,6 @@ alias l='ls -CF'
 
 
 # ---------------------------------------------------------------------- #
-# mercurial
-# ---------------------------------------------------------------------- #
-alias hga='hg add'
-alias hgbr='hg heads'
-alias hgc='hg commit'
-alias hgch='hg update'
-alias hgdf='hg diff | less'
-alias hgf='hg forget'
-alias hgl="hg log --limit 10 --template '{rev}: {desc|firstline}\n'"
-alias hgp='hg pull && hg update'
-alias hgrm='hg remove'
-alias hgs='hg status'
-alias hgu='hg push'
-alias hguu='hg push --new-branch'
-alias hgx='hg commit --close-branch'
-
-
-# ---------------------------------------------------------------------- #
 # mkdir
 # ---------------------------------------------------------------------- #
 function FA__mkd() {
@@ -179,20 +147,11 @@ alias mkd='FA__mkd'
 
 
 # ---------------------------------------------------------------------- #
-# angular
-# ---------------------------------------------------------------------- #
-# HELP: '${FA_ng_no_npx}' as a set variable to not use `npx` with angular
-[[ -n "${FA_ng_no_npx:-}" ]] || FA__ng_npx='npx'
-alias ngt="${FA__ng_npx} ng test --code-coverage --watch=false"
-
-
-# ---------------------------------------------------------------------- #
 # npm
 # ---------------------------------------------------------------------- #
 alias npmb='npm run build'
 alias npmc='npm run clean'
 alias npmd='npm run doc'
-alias npmh='npm home'
 alias npmic='npm install --no-save' 	# "npm install clean"
 alias npmid='npm install --save-dev' 	# "npm install devDep"
 alias npmp='npm pack'
@@ -212,30 +171,6 @@ alias pipg='PIP_REQUIRE_VIRTUALENV= pip install --user'
 
 
 # ---------------------------------------------------------------------- #
-# react-native
-# ---------------------------------------------------------------------- #
-# HELP: '${FA_rn_no_npx}' as a set variable to not use `npx` with react-native
-[[ -n "${FA_rn_no_npx:-}" ]] || FA__rn_npx='npx'
-alias rn="${FA__rn_npx} react-native"
-
-
-# ---------------------------------------------------------------------- #
-# supervisord
-# ---------------------------------------------------------------------- #
-# HELP: '${FA_supervisord_use_sudo}' as a set variable to use `sudo` with `supervisord`
-[[ -n "${FA_supervisord_use_sudo:-}" ]] && FA__supervisord_sudo='sudo'
-# HELP: '${FA_supervisord_conf}' as a path to a config file for `supervisord` and `supervisorctl`
-[[ -n "${FA_supervisord_conf:-}" ]] && FA__supervisord_conf="-c '${FA_supervisord_conf}'"
-alias ssv="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf}"
-alias ssv.i="${FA__supervisord_sudo} supervisord ${FA__supervisord_conf}"
-alias ssv.r="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} reload"
-alias ssv.s="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} start"
-alias ssv.t="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} status"
-alias ssv.x="${FA__supervisord_sudo} supervisorctl ${FA__supervisord_conf} stop"
-alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
-
-
-# ---------------------------------------------------------------------- #
 # system updates
 # ---------------------------------------------------------------------- #
 # HELP: '${FA_apt_no_sudo}' as a set variable to not use `sudo` with `apt-get`
@@ -244,7 +179,6 @@ alias ssv.initd="${FA__supervisord_sudo} /etc/init.d/supervisor start"
 [[ -n "${FA_apt_assume_yes:-}" ]] && FA__apt_assume_yes='-y'
 # HELP: '${FA_apt_purge}' as a set variable to purge during cleanup
 [[ -n "${FA_apt_purge:-}" ]] && FA__apt_purge='--purge'
-alias update="${FA__apt_sudo} apt-get update"
 alias upgrade="\
     ${FA__apt_sudo} apt-get update && \
     ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} upgrade && \

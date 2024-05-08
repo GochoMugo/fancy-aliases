@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Removed:
+
+1. **angular**: all aliases.
+1. **apt-get**: `update`
+1. **docker**: `dkl`
+1. **hub**: all aliases.
+1. **mercurial**: all aliases.
+1. **npm**: `npmh`
+1. **react-native**: all aliases.
+1. **supervisord**: all aliases.
+
 
 ## [0.18.0][0.18.0] - 2024-04-03
 

@@ -10,21 +10,16 @@ Read through the [`aliases.sh`][script] file instead. It is simple!
 
 The aliases wrap around the following CLI apps:
 
-1. **angular**
 1. **apt-get**
 1. **cd**
 1. **clear**
 1. **docker**
 1. **git**
-1. **hub**
 1. **ln**
 1. **ls**
-1. **mercurial**
 1. **mkdir**
 1. **npm**
 1. **pip**
-1. **react native**
-1. **supervisord**
 1. **xclip**
 
 
