@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.20.0][0.20.0] - 2025-04-06
+
 Added:
 
 1. **docker**: `dkrm`
@@ -136,4 +139,5 @@ Added:
 [0.17.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.17.0
 [0.18.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.18.0
 [0.19.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.19.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.19.0...master
+[0.20.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.20.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.20.0...master
