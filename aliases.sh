@@ -47,6 +47,7 @@ alias dkcc='docker rm $(docker ps -a -f status=exited -q)'
 alias dke='docker exec -it'
 alias dklf='docker logs --follow'
 alias dkps='docker ps'
+alias dkrm='docker rm'
 alias dkrs='docker restart'
 alias dks='docker start'
 alias dkx='docker stop'
@@ -93,12 +94,15 @@ alias gl='git log --pretty=oneline'
 alias gm="git merge --no-ff ${FA__git_sign}"
 alias gmf='git merge --ff-only'
 alias gp='git pull'
+alias gpf='git pull --ff-only'
 alias grb="git rebase --interactive ${FA__git_sign}"
+alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbe='git rebase --edit-todo'
 alias gre='git reset'
 alias grem='git remote'
 alias grm='git rm'
+alias grv='git revert -S'
 alias gs='git status --short'
 alias gt="git tag --annotate ${FA_git_sign:+--sign}"
 function FA__gtd() {
@@ -130,6 +134,11 @@ function FA__gzd() {
     git stash drop ${@}
 }
 alias gzd='FA__gzd'
+function FA__gzda() {
+    msu run console.yes_no "Drop ALL stashes; you will lose un-committed work" || return 1
+    git stash clear
+}
+alias gzda='FA__gzda'
 alias gzl='git stash list'
 alias gzp='git stash pop'
 
@@ -144,7 +153,7 @@ alias lns="FA__lns"
 # ---------------------------------------------------------------------- #
 # ls
 # ---------------------------------------------------------------------- #
-alias ll='ls -l'
+alias ll='ls -ahl'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -165,8 +174,10 @@ alias mkd='FA__mkd'
 alias npmb='npm run build'
 alias npmc='npm run clean'
 alias npmd='npm run doc'
+alias npmf='npm run format'
 alias npmic='npm install --no-save' 	# "npm install clean"
 alias npmid='npm install --save-dev' 	# "npm install devDep"
+alias npmo='npm outdated'
 alias npmp='npm pack'
 alias npmr='npm run'
 alias npms='npm start'

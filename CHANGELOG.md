@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Added:
+
+1. **docker**: `dkrm`
+1. **git**: `gpf`, `grba`, `grv`, `gzda`
+1. **npm**: `npmf`, `npmo`
+
+Changed:
+
+1. **ls**: `ll` adds options `-ah`
+
 
 ## [0.19.0][0.19.0] - 2024-05-08
 
