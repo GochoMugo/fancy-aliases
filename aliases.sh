@@ -195,22 +195,6 @@ alias pipg='PIP_REQUIRE_VIRTUALENV= pip install --user'
 
 
 # ---------------------------------------------------------------------- #
-# system updates
-# ---------------------------------------------------------------------- #
-# HELP: '${FA_apt_no_sudo}' as a set variable to not use `sudo` with `apt-get`
-[[ -n "${FA_apt_no_sudo:-}" ]] || FA__apt_sudo='sudo'
-# HELP: '${FA_apt_assume_yes}' as a set variable to `apt` assume yes
-[[ -n "${FA_apt_assume_yes:-}" ]] && FA__apt_assume_yes='-y'
-# HELP: '${FA_apt_purge}' as a set variable to purge during cleanup
-[[ -n "${FA_apt_purge:-}" ]] && FA__apt_purge='--purge'
-alias upgrade="\
-    ${FA__apt_sudo} apt-get update && \
-    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} upgrade && \
-    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} dist-upgrade && \
-    ${FA__apt_sudo} apt-get ${FA__apt_assume_yes} ${FA__apt_purge} autoremove"
-
-
-# ---------------------------------------------------------------------- #
 # xclip
 # ---------------------------------------------------------------------- #
 alias clip='\

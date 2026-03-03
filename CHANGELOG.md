@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Removed:
+
+1. **apt-get**: `upgrade`.
+
 
 ## [0.20.0][0.20.0] - 2025-04-06
 
