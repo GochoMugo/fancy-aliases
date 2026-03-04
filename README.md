@@ -19,6 +19,7 @@ The aliases wrap around the following CLI apps:
 1. **ln**
 1. **ls**
 1. **mkdir**
+1. **mvn**
 1. **npm**
 1. **pip**
 1. **xclip**

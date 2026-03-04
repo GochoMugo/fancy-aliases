@@ -13,6 +13,7 @@ Added:
 1. **cp**: `cp`
 1. **git**: `gcb`
 1. **less**: `less`
+1. **mvn**: `mvnp`, `mvnt`
 
 Removed:
 

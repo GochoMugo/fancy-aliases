@@ -190,6 +190,26 @@ alias mkd='FA__mkd'
 
 
 # ---------------------------------------------------------------------- #
+# mvn
+# ---------------------------------------------------------------------- #
+
+# DOC: `mvnp` (maven package) runs package phase while skipping tests.
+alias mvnp='mvn package -DskipTests'
+
+# DOC: `mvnt` (maven test) runs all tests, or a single test if specified.
+alias mvnt='FA__mvnt'
+function FA__mvnt() {
+  local target
+  target="${1}"
+  if [ -n "${target}" ] ; then
+    mvn test -Dtest="${target}"
+  else
+    mvn test
+  fi
+}
+
+
+# ---------------------------------------------------------------------- #
 # npm
 # ---------------------------------------------------------------------- #
 alias npmb='npm run build'
