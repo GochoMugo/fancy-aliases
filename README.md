@@ -15,6 +15,7 @@ The aliases wrap around the following CLI apps:
 1. **clear**
 1. **docker**
 1. **git**
+1. **less**
 1. **ln**
 1. **ls**
 1. **mkdir**
