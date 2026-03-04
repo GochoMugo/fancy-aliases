@@ -15,6 +15,11 @@ Added:
 1. **less**: `less`
 1. **mv**: `mv`
 1. **mvn**: `mvnp`, `mvnt`
+1. **rm**: `rm`
+1. **shred**: `trash`
+1. **tree**: `tre`, `tree`
+1. **wget**: `wget`
+1. **misc**: `ok`
 
 Removed:
 

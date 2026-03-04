@@ -244,9 +244,67 @@ alias pipg='PIP_REQUIRE_VIRTUALENV= pip install --user'
 
 
 # ---------------------------------------------------------------------- #
+# rm
+# ---------------------------------------------------------------------- #
+
+# DOC: `rm` prompts before removal.
+alias rm='rm -i'
+
+
+# ---------------------------------------------------------------------- #
+# shred
+# ---------------------------------------------------------------------- #
+
+# DOC: `trash` overwrites and zeroes the file before deleting it.
+alias trash='shred --remove --zero --verbose'
+
+
+# ---------------------------------------------------------------------- #
+# tree
+# ---------------------------------------------------------------------- #
+
+# DOC: `tre` is a shorthand for `tree` with hidden files and color enabled,
+# ignoring some directories, such as `.git`, and listing directories first.
+# The output gets piped into `less` with options to preserve color and
+# line numbers, unless the output is small enough for one screen.
+alias tre='FA__tre'
+function FA__tre() {
+    tree -aC -I '.git|.hg|.venv|node_modules' --dirsfirst "$@" | less -FRNX;
+}
+
+# DOC: `tree` shows directories first.
+alias tree='tree --dirsfirst'
+
+
+# ---------------------------------------------------------------------- #
+# wget
+# ---------------------------------------------------------------------- #
+
+# DOC: `wget` resumes partially-downloaded file.
+alias wget='wget --continue'
+
+
+# ---------------------------------------------------------------------- #
 # xclip
 # ---------------------------------------------------------------------- #
 alias clip='\
     tr --delete \\n | \
     xclip -selection clipboard && \
     echo "$(xclip -selection clipboard -out)"'
+
+
+# ---------------------------------------------------------------------- #
+# misc
+# ---------------------------------------------------------------------- #
+
+# DOC: `ok` prints a message indicating the exit status of the
+# last ran command.
+function ok() {
+    local ret_code=$?
+    if [ ${ret_code} -eq 0 ] ; then
+        echo -e "${clr_green}Last command was successful${clr_reset}"
+    else
+        echo -e "${clr_red}Last command failed with exit code ${ret_code}${clr_reset}"
+    fi
+    return ${ret_code}
+}

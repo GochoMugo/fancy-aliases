@@ -23,6 +23,10 @@ The aliases wrap around the following CLI apps:
 1. **mvn**
 1. **npm**
 1. **pip**
+1. **rm**
+1. **shred**
+1. **tree**
+1. **wget**
 1. **xclip**
 
 
