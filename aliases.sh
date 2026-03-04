@@ -84,6 +84,11 @@ function FA__gbrdd() {
 alias gbrdd='FA__gbrdd'
 alias gc="git commit ${FA__git_sign}"
 alias gca="git commit ${FA__git_sign} --amend"
+
+# DOC: `gcb` (git clean branches) removes all merged, local branches,
+# except current, master and/or main branches.
+alias gcb='git branch --merged | grep --extended-regexp --invert-match "(^\*|master|main)" | xargs git branch --delete'
+
 alias gch='git checkout'
 alias gcl='git clone'
 alias gclf='git clone --depth 1'
