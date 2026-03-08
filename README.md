@@ -5,8 +5,7 @@
 >
 > Using [msu][msu], you can move around with them from machine to machine
 
-**Note:** Documenting these aliases is plainly tedious, and **not** worth automating.
-Read through the [`aliases.sh`][script] file instead. It is simple!
+Each alias is documented with a brief description. Use `fancy-aliases` to see a list of all aliases with their descriptions.
 
 The aliases wrap around the following CLI apps:
 
