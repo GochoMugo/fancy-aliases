@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+
+## [0.21.0][0.21.0] - 2026-03-08
+
 Added:
 
 1. **cp**: `cp`
@@ -20,6 +23,7 @@ Added:
 1. **tree**: `tre`, `tree`
 1. **wget**: `wget`
 1. **misc**: `ok`
+1. **fancy-aliases** displays documentation of each alias.
 
 Removed:
 
@@ -157,4 +161,5 @@ Added:
 [0.18.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.18.0
 [0.19.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.19.0
 [0.20.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.20.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.20.0...master
+[0.21.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.21.0
+[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.21.0...master

@@ -5,7 +5,8 @@
 >
 > Using [msu][msu], you can move around with them from machine to machine
 
-Each alias is documented with a brief description. Use `fancy-aliases` to see a list of all aliases with their descriptions.
+Each alias is documented with a brief description.
+Use `fancy-aliases` to see a list of all aliases with their descriptions.
 
 The aliases wrap around the following CLI apps:
 
