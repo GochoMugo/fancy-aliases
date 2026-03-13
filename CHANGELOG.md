@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][unreleased]
 
+Added:
+
+1. **uv**: `uvp`
+
 
 ## [0.21.0][0.21.0] - 2026-03-08
 

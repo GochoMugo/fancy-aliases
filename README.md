@@ -26,6 +26,7 @@ The aliases wrap around the following CLI apps:
 1. **rm**
 1. **shred**
 1. **tree**
+1. **uv**
 1. **wget**
 1. **xclip**
 
