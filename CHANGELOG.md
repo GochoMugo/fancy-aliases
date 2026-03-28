@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+
+## [0.22.0][0.22.0] - 2026-03-28
+
 Added:
 
 1. **uv**: `uvp`
@@ -170,3 +173,4 @@ Added:
 [0.19.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.19.0
 [0.20.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/release/0.20.0
 [0.21.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/release/0.21.0
+[0.22.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/release/0.22.0
