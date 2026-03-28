@@ -6,11 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased][unreleased]
+## Unreleased
 
 Added:
 
 1. **uv**: `uvp`
+
+Removed:
+
+1. **fancy-aliases** function removed.
 
 
 ## [0.21.0][0.21.0] - 2026-03-08
@@ -164,6 +168,5 @@ Added:
 [0.17.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.17.0
 [0.18.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.18.0
 [0.19.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.19.0
-[0.20.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.20.0
-[0.21.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/v0.21.0
-[unreleased]:https://github.com/GochoMugo/fancy-aliases/compare/v0.21.0...master
+[0.20.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/release/0.20.0
+[0.21.0]:https://github.com/GochoMugo/fancy-aliases/releases/tag/release/0.21.0
