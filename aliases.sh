@@ -6,40 +6,6 @@ FA__version=0.21.0
 
 
 # ---------------------------------------------------------------------- #
-# Showing help information
-# ---------------------------------------------------------------------- #
-fancy-aliases() {
-    echo
-    echo " fancy-aliases v${FA__version}"
-    echo
-    echo " Available aliases:"
-    echo
-    awk '
-        /^[[:space:]]*$/  { doc = ""; next }
-        /^# DOC: /        { doc = substr($0, 8); next }
-        /^# /             { if (doc != "") doc = doc " " substr($0, 3); next }
-        /^alias / {
-            if (doc != "") {
-                name = $2
-                sub(/=.*$/, "", name)
-                printf "  %-12s %s\n", name, doc
-            }
-            doc = ""
-            next
-        }
-        { doc = "" }
-    ' "${BASH_SOURCE[0]}"
-    echo
-    echo " Available options:"
-    echo
-    grep -E '^# HELP: ' "${BASH_SOURCE[0]}" | sed s/\#\ HELP:/\ \ /
-    echo
-    echo " See https://github.com/GochoMugo/fancy-aliases for more info."
-    echo
-}
-
-
-# ---------------------------------------------------------------------- #
 # cd
 # ---------------------------------------------------------------------- #
 
@@ -499,3 +465,5 @@ function ok() {
     fi
     return ${ret_code}
 }
+
+# HELP: See https://github.com/GochoMugo/fancy-aliases for more info.

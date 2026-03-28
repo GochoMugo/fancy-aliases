@@ -6,7 +6,7 @@
 > Using [msu][msu], you can move around with them from machine to machine
 
 Each alias is documented with a brief description.
-Use `fancy-aliases` to see a list of all aliases with their descriptions.
+Use `msu help fancy-aliases` to see a list of all aliases with their descriptions.
 
 The aliases wrap around the following CLI apps:
 
@@ -52,7 +52,7 @@ Installation options:
 Just:
 
 ```bash
-$ fancy-aliases
+$ msu help fancy-aliases
 ```
 
 
