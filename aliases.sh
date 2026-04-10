@@ -402,7 +402,7 @@ alias rm='rm -i'
 # shred
 # ---------------------------------------------------------------------- #
 
-# DOC: Overwrites and zeroes the file before deleting it (uses shred on Linux, rm on macOS).
+# DOC: Deletes a file securely by overwriting it before removal (uses shred on Linux; falls back to rm on macOS where shred is unavailable).
 function FA__trash() {
     if command -v shred >/dev/null 2>&1; then
         shred --remove --zero --verbose "$@"

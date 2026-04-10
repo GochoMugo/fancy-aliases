@@ -35,7 +35,6 @@ _run_alias() {
 
 @test "'..' navigates up one directory" {
     mkdir -p "${TEST_TEMP_DIR}/a"
-    # Alias: cd ..
     _run_alias "cd '${TEST_TEMP_DIR}/a' && .. && pwd"
     [ "${status}" -eq 0 ]
     [ "${output}" = "${TEST_TEMP_DIR}" ]
@@ -43,7 +42,6 @@ _run_alias() {
 
 @test "'...' navigates up two directories" {
     mkdir -p "${TEST_TEMP_DIR}/a/b"
-    # Alias: cd ../..
     _run_alias "cd '${TEST_TEMP_DIR}/a/b' && ... && pwd"
     [ "${status}" -eq 0 ]
     [ "${output}" = "${TEST_TEMP_DIR}" ]
@@ -51,7 +49,6 @@ _run_alias() {
 
 @test "'....' navigates up three directories" {
     mkdir -p "${TEST_TEMP_DIR}/a/b/c"
-    # Alias: cd ../../..
     _run_alias "cd '${TEST_TEMP_DIR}/a/b/c' && .... && pwd"
     [ "${status}" -eq 0 ]
     [ "${output}" = "${TEST_TEMP_DIR}" ]
