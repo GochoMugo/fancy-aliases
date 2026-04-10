@@ -24,7 +24,7 @@ alias ....='cd ../../..'
 # ---------------------------------------------------------------------- #
 
 # DOC: Copies directories recursively and prompts before overwriting.
-alias cp='cp --interactive --recursive'
+alias cp='cp -i -r'
 
 
 # ---------------------------------------------------------------------- #
@@ -309,7 +309,7 @@ alias mkd='FA__mkd'
 # ---------------------------------------------------------------------- #
 
 # DOC: Prompts before overwriting.
-alias mv='mv --interactive'
+alias mv='mv -i'
 
 
 # ---------------------------------------------------------------------- #
@@ -402,8 +402,15 @@ alias rm='rm -i'
 # shred
 # ---------------------------------------------------------------------- #
 
-# DOC: Overwrites and zeroes the file before deleting it.
-alias trash='shred --remove --zero --verbose'
+# DOC: Overwrites and zeroes the file before deleting it (uses shred on Linux, rm on macOS).
+function FA__trash() {
+    if command -v shred >/dev/null 2>&1; then
+        shred --remove --zero --verbose "$@"
+    else
+        rm -f "$@"
+    fi
+}
+alias trash='FA__trash'
 
 
 # ---------------------------------------------------------------------- #

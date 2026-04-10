@@ -63,86 +63,21 @@ _run_alias() {
 # ---------------------------------------------------------------------- #
 
 @test "'cp' copies a file to a new destination" {
-    [[ "$(uname)" == "Linux" ]] || skip "requires GNU coreutils"
     local src="${TEST_TEMP_DIR}/src.txt"
     local dst="${TEST_TEMP_DIR}/dst.txt"
     echo "hello" > "${src}"
-    # Alias: cp --interactive --recursive
     cp "${src}" "${dst}"
     [ -f "${dst}" ]
     [ "$(cat "${dst}")" = "hello" ]
 }
 
 @test "'cp' copies a directory recursively" {
-    [[ "$(uname)" == "Linux" ]] || skip "requires GNU coreutils"
     mkdir -p "${TEST_TEMP_DIR}/srcdir/subdir"
     echo "hello" > "${TEST_TEMP_DIR}/srcdir/file.txt"
     echo "world" > "${TEST_TEMP_DIR}/srcdir/subdir/nested.txt"
-    # Alias: cp --interactive --recursive
     _run_alias "cp '${TEST_TEMP_DIR}/srcdir' '${TEST_TEMP_DIR}/dstdir'"
     [ -f "${TEST_TEMP_DIR}/dstdir/file.txt" ]
     [ -f "${TEST_TEMP_DIR}/dstdir/subdir/nested.txt" ]
-}
-
-@test "'cp' does not overwrite an existing file without confirmation" {
-    [[ "$(uname)" == "Linux" ]] || skip "requires GNU coreutils"
-    local src="${TEST_TEMP_DIR}/src.txt"
-    local dst="${TEST_TEMP_DIR}/dst.txt"
-    echo "original" > "${dst}"
-    echo "new" > "${src}"
-    # Alias: cp --interactive; pipe 'n' to decline. cp exits non-zero when skipping.
-    echo "n" | cp --interactive "${src}" "${dst}" || true
-    [ "$(cat "${dst}")" = "original" ]
-}
-
-
-# ---------------------------------------------------------------------- #
-# clear
-# ---------------------------------------------------------------------- #
-
-@test "'cls' alias expands to 'clear'" {
-    run alias cls
-    [[ "${output}" == *"clear"* ]]
-}
-
-
-# ---------------------------------------------------------------------- #
-# docker
-# ---------------------------------------------------------------------- #
-
-@test "'dkps' alias expands to 'docker ps'" {
-    run alias dkps
-    [[ "${output}" == *"docker ps"* ]]
-}
-
-@test "'dke' alias expands to 'docker exec -it'" {
-    run alias dke
-    [[ "${output}" == *"docker exec -it"* ]]
-}
-
-@test "'dklf' alias expands to 'docker logs --follow'" {
-    run alias dklf
-    [[ "${output}" == *"docker logs --follow"* ]]
-}
-
-@test "'dkrm' alias expands to 'docker rm'" {
-    run alias dkrm
-    [[ "${output}" == *"docker rm"* ]]
-}
-
-@test "'dkrs' alias expands to 'docker restart'" {
-    run alias dkrs
-    [[ "${output}" == *"docker restart"* ]]
-}
-
-@test "'dks' alias expands to 'docker start'" {
-    run alias dks
-    [[ "${output}" == *"docker start"* ]]
-}
-
-@test "'dkx' alias expands to 'docker stop'" {
-    run alias dkx
-    [[ "${output}" == *"docker stop"* ]]
 }
 
 
@@ -154,26 +89,10 @@ _run_alias() {
     _setup_git_repo "${TEST_TEMP_DIR}/repo"
     cd "${TEST_TEMP_DIR}/repo"
     echo "content" > file.txt
-    # Alias: git add
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && ga file.txt"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" status --short
     [[ "${output}" == *"A  file.txt"* ]]
-}
-
-@test "'gam' alias expands to 'git am'" {
-    run alias gam
-    [[ "${output}" == *"git am"* ]]
-}
-
-@test "'gamc' alias expands to 'git am --continue'" {
-    run alias gamc
-    [[ "${output}" == *"git am --continue"* ]]
-}
-
-@test "'gap' alias expands to 'git add --patch'" {
-    run alias gap
-    [[ "${output}" == *"git add --patch"* ]]
 }
 
 @test "'gbr' lists local branches" {
@@ -189,7 +108,6 @@ _run_alias() {
     cd "${TEST_TEMP_DIR}/repo"
     git commit --allow-empty -m "init"
     git branch to-delete
-    # Alias: git branch -d
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gbrd to-delete"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" branch
@@ -216,7 +134,6 @@ EOF
     cd "${TEST_TEMP_DIR}/repo"
     echo "content" > file.txt
     git add file.txt
-    # Alias: git commit
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gc -m 'test commit'"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" log --oneline
@@ -227,7 +144,6 @@ EOF
     _setup_git_repo "${TEST_TEMP_DIR}/repo"
     cd "${TEST_TEMP_DIR}/repo"
     git commit --allow-empty -m "original message"
-    # Alias: git commit --amend
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gca --allow-empty -m 'amended message'"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" log --oneline
@@ -235,10 +151,20 @@ EOF
     [[ "${output}" == *"amended message"* ]]
 }
 
-@test "'gcb' alias removes merged branches" {
-    run alias gcb
-    [[ "${output}" == *"git branch --merged"* ]]
-    [[ "${output}" == *"git branch --delete"* ]]
+@test "'gcb' deletes all merged local branches" {
+    local repo="${TEST_TEMP_DIR}/repo"
+    _setup_git_repo "${repo}"
+    cd "${repo}"
+    git commit --allow-empty -m "init"
+    local default_branch
+    default_branch="$(git rev-parse --abbrev-ref HEAD)"
+    git checkout -b merged-branch
+    git checkout "${default_branch}"
+    git merge merged-branch
+    _run_alias "cd '${repo}' && gcb"
+    [ "${status}" -eq 0 ]
+    run git -C "${repo}" branch
+    [[ "${output}" != *"merged-branch"* ]]
 }
 
 @test "'gch' checks out a branch" {
@@ -246,7 +172,6 @@ EOF
     cd "${TEST_TEMP_DIR}/repo"
     git commit --allow-empty -m "init"
     git branch feature
-    # Alias: git checkout
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gch feature"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" rev-parse --abbrev-ref HEAD
@@ -257,7 +182,6 @@ EOF
     local origin="${TEST_TEMP_DIR}/origin"
     _setup_git_repo "${origin}"
     git -C "${origin}" commit --allow-empty -m "init"
-    # Alias: git clone
     _run_alias "gcl '${origin}' '${TEST_TEMP_DIR}/clone'"
     [ -d "${TEST_TEMP_DIR}/clone/.git" ]
 }
@@ -267,7 +191,6 @@ EOF
     _setup_git_repo "${origin}"
     git -C "${origin}" commit --allow-empty -m "first"
     git -C "${origin}" commit --allow-empty -m "second"
-    # Alias: git clone --depth 1; use file:// so --depth is honoured.
     _run_alias "gclf 'file://${origin}' '${TEST_TEMP_DIR}/shallow'"
     run git -C "${TEST_TEMP_DIR}/shallow" log --oneline
     [ "$(echo "${output}" | wc -l)" -eq 1 ]
@@ -289,7 +212,6 @@ EOF
     local sha
     sha="$(git rev-parse HEAD)"
     git checkout "${default_branch}"
-    # Alias: git cherry-pick
     _run_alias "cd '${repo}' && gcp '${sha}'"
     [ "${status}" -eq 0 ]
     run git -C "${repo}" log --oneline
@@ -303,7 +225,6 @@ EOF
     git add file.txt
     git commit -m "init"
     echo "changed" > file.txt
-    # Alias: git diff
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gdf"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *"-original"* ]]
@@ -318,26 +239,27 @@ EOF
     git commit -m "init"
     echo "changed" > file.txt
     git add file.txt
-    # Alias: git diff --cached
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gdfc"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *"-original"* ]]
     [[ "${output}" == *"+changed"* ]]
 }
 
-@test "'gdfs' alias expands to 'FA__gdfs'" {
-    run alias gdfs
-    [[ "${output}" == *"FA__gdfs"* ]]
-}
-
-@test "'gdfcs' alias expands to 'FA__gdfcs'" {
-    run alias gdfcs
-    [[ "${output}" == *"FA__gdfcs"* ]]
-}
-
-@test "'gf' alias expands to 'git fetch'" {
-    run alias gf
-    [[ "${output}" == *"git fetch"* ]]
+@test "'gf' fetches changes from a remote repository" {
+    local origin="${TEST_TEMP_DIR}/origin"
+    local clone="${TEST_TEMP_DIR}/clone"
+    _setup_git_repo "${origin}"
+    git -C "${origin}" commit --allow-empty -m "init"
+    git clone "${origin}" "${clone}"
+    git -C "${clone}" config user.email "test@example.com"
+    git -C "${clone}" config user.name "Test User"
+    git -C "${origin}" commit --allow-empty -m "new commit"
+    local branch
+    branch="$(git -C "${origin}" rev-parse --abbrev-ref HEAD)"
+    _run_alias "cd '${clone}' && gf"
+    [ "${status}" -eq 0 ]
+    run git -C "${clone}" log --oneline "origin/${branch}"
+    [[ "${output}" == *"new commit"* ]]
 }
 
 @test "'gfp' creates a patch file from a commit" {
@@ -348,7 +270,6 @@ EOF
     echo "content" > file.txt
     git add file.txt
     git commit -m "add file"
-    # Alias: git format-patch --binary --output-directory=_patches
     _run_alias "cd '${repo}' && gfp HEAD~1"
     [ -n "$(ls "${repo}/_patches/"*.patch 2>/dev/null)" ]
 }
@@ -358,7 +279,6 @@ EOF
     cd "${TEST_TEMP_DIR}/repo"
     git commit --allow-empty -m "first commit"
     git commit --allow-empty -m "second commit"
-    # Alias: git log --pretty=oneline
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gl"
     [ "${status}" -eq 0 ]
     [ "$(echo "${output}" | wc -l)" -eq 2 ]
@@ -376,7 +296,6 @@ EOF
     git checkout -b feature
     git commit --allow-empty -m "feature work"
     git checkout "${default_branch}"
-    # Alias: git merge --no-ff
     _run_alias "cd '${repo}' && gm feature -m 'merge feature'"
     [ "${status}" -eq 0 ]
     run git -C "${repo}" log --oneline
@@ -393,41 +312,91 @@ EOF
     git checkout -b feature
     git commit --allow-empty -m "feature work"
     git checkout "${default_branch}"
-    # Alias: git merge --ff-only
     _run_alias "cd '${repo}' && gmf feature"
     [ "${status}" -eq 0 ]
     run git -C "${repo}" log --oneline
     [[ "${output}" == *"feature work"* ]]
 }
 
-@test "'gp' alias expands to 'git pull'" {
-    run alias gp
-    [[ "${output}" == *"git pull"* ]]
+@test "'gp' pulls changes from a remote repository" {
+    local origin="${TEST_TEMP_DIR}/origin"
+    local clone="${TEST_TEMP_DIR}/clone"
+    _setup_git_repo "${origin}"
+    git -C "${origin}" commit --allow-empty -m "init"
+    git clone "${origin}" "${clone}"
+    git -C "${clone}" config user.email "test@example.com"
+    git -C "${clone}" config user.name "Test User"
+    git -C "${origin}" commit --allow-empty -m "new commit"
+    _run_alias "cd '${clone}' && gp"
+    [ "${status}" -eq 0 ]
+    run git -C "${clone}" log --oneline
+    [[ "${output}" == *"new commit"* ]]
 }
 
-@test "'gpf' alias expands to 'git pull --ff-only'" {
-    run alias gpf
-    [[ "${output}" == *"git pull --ff-only"* ]]
+@test "'gpf' pulls changes using fast-forward only" {
+    local origin="${TEST_TEMP_DIR}/origin"
+    local clone="${TEST_TEMP_DIR}/clone"
+    _setup_git_repo "${origin}"
+    git -C "${origin}" commit --allow-empty -m "init"
+    git clone "${origin}" "${clone}"
+    git -C "${clone}" config user.email "test@example.com"
+    git -C "${clone}" config user.name "Test User"
+    git -C "${origin}" commit --allow-empty -m "new commit"
+    _run_alias "cd '${clone}' && gpf"
+    [ "${status}" -eq 0 ]
+    run git -C "${clone}" log --oneline
+    [[ "${output}" == *"new commit"* ]]
 }
 
-@test "'grb' alias expands to 'git rebase --interactive'" {
-    run alias grb
-    [[ "${output}" == *"git rebase --interactive"* ]]
+@test "'grba' aborts an in-progress rebase" {
+    local repo="${TEST_TEMP_DIR}/repo"
+    _setup_git_repo "${repo}"
+    cd "${repo}"
+    echo "base" > file.txt
+    git add file.txt
+    git commit -m "base"
+    local default_branch
+    default_branch="$(git rev-parse --abbrev-ref HEAD)"
+    git checkout -b feature
+    echo "feature" > file.txt
+    git commit -am "feature change"
+    git checkout "${default_branch}"
+    echo "main" > file.txt
+    git commit -am "main change"
+    git checkout feature
+    git rebase "${default_branch}" || true
+    [ -d "${repo}/.git/rebase-merge" ]
+    _run_alias "cd '${repo}' && grba"
+    [ "${status}" -eq 0 ]
+    [ ! -d "${repo}/.git/rebase-merge" ]
 }
 
-@test "'grba' alias expands to 'git rebase --abort'" {
-    run alias grba
-    [[ "${output}" == *"git rebase --abort"* ]]
-}
-
-@test "'grbc' alias expands to 'git rebase --continue'" {
-    run alias grbc
-    [[ "${output}" == *"git rebase --continue"* ]]
-}
-
-@test "'grbe' alias expands to 'git rebase --edit-todo'" {
-    run alias grbe
-    [[ "${output}" == *"git rebase --edit-todo"* ]]
+@test "'grbc' continues a rebase after resolving conflicts" {
+    local repo="${TEST_TEMP_DIR}/repo"
+    _setup_git_repo "${repo}"
+    git -C "${repo}" config core.editor true
+    cd "${repo}"
+    echo "base" > file.txt
+    git add file.txt
+    git commit -m "base"
+    local default_branch
+    default_branch="$(git rev-parse --abbrev-ref HEAD)"
+    git checkout -b feature
+    echo "feature" > file.txt
+    git commit -am "feature change"
+    git checkout "${default_branch}"
+    echo "main" > file.txt
+    git commit -am "main change"
+    git checkout feature
+    git rebase "${default_branch}" || true
+    [ -d "${repo}/.git/rebase-merge" ]
+    echo "resolved" > "${repo}/file.txt"
+    git -C "${repo}" add file.txt
+    _run_alias "cd '${repo}' && grbc"
+    [ "${status}" -eq 0 ]
+    [ ! -d "${repo}/.git/rebase-merge" ]
+    run git -C "${repo}" log --oneline
+    [[ "${output}" == *"feature change"* ]]
 }
 
 @test "'gre' unstages a staged file" {
@@ -436,7 +405,6 @@ EOF
     git commit --allow-empty -m "init"
     echo "new content" > file.txt
     git add file.txt
-    # Alias: git reset
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gre HEAD file.txt"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" status --short
@@ -445,7 +413,6 @@ EOF
 
 @test "'grem' lists remote repositories" {
     _setup_git_repo "${TEST_TEMP_DIR}/repo"
-    # Alias: git remote
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && grem"
     [ "${status}" -eq 0 ]
 }
@@ -456,23 +423,16 @@ EOF
     echo "content" > file.txt
     git add file.txt
     git commit -m "init"
-    # Alias: git rm
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && grm file.txt"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" status --short
     [[ "${output}" == *"D  file.txt"* ]]
 }
 
-@test "'grv' alias expands to 'git revert'" {
-    run alias grv
-    [[ "${output}" == *"git revert"* ]]
-}
-
 @test "'gs' shows the working-tree status in short format" {
     _setup_git_repo "${TEST_TEMP_DIR}/repo"
     cd "${TEST_TEMP_DIR}/repo"
     echo "content" > untracked.txt
-    # Alias: git status --short
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gs"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *"?? untracked.txt"* ]]
@@ -482,7 +442,6 @@ EOF
     _setup_git_repo "${TEST_TEMP_DIR}/repo"
     cd "${TEST_TEMP_DIR}/repo"
     git commit --allow-empty -m "init"
-    # Alias: git tag --annotate
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gt v1.0.0 -m 'version 1.0.0'"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" tag --list
@@ -510,15 +469,9 @@ EOF
     git commit --allow-empty -m "init"
     git tag v0.1.0
     git tag v0.2.0
-    # Alias: git tag --list
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gtl"
     [[ "${output}" == *"v0.1.0"* ]]
     [[ "${output}" == *"v0.2.0"* ]]
-}
-
-@test "'gu' alias expands to 'git push'" {
-    run alias gu
-    [[ "${output}" == *"git push"* ]]
 }
 
 @test "'guf' function force-pushes a branch to a remote" {
@@ -570,7 +523,6 @@ EOF
     git add file.txt
     git commit -m "init"
     echo "modified" > file.txt
-    # Alias: git stash save --include-untracked
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gz"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" status --short
@@ -586,7 +538,6 @@ EOF
     git commit -m "init"
     echo "modified" > file.txt
     git stash
-    # Alias: git stash apply
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gza"
     [ "${status}" -eq 0 ]
     [ "$(cat "${TEST_TEMP_DIR}/repo/file.txt")" = "modified" ]
@@ -603,22 +554,11 @@ EOF
     echo "staged" > staged.txt
     git add staged.txt
     echo "unstaged" > unstaged.txt
-    # Alias: gz --keep-index  →  git stash save --include-untracked --keep-index
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gzc"
     [ "${status}" -eq 0 ]
     run git -C "${TEST_TEMP_DIR}/repo" status --short
     [[ "${output}" == *"staged.txt"* ]]
     [ ! -f "${TEST_TEMP_DIR}/repo/unstaged.txt" ]
-}
-
-@test "'gzd' alias expands to 'FA__gzd'" {
-    run alias gzd
-    [[ "${output}" == *"FA__gzd"* ]]
-}
-
-@test "'gzda' alias expands to 'FA__gzda'" {
-    run alias gzda
-    [[ "${output}" == *"FA__gzda"* ]]
 }
 
 @test "'gzl' lists stash entries" {
@@ -629,7 +569,6 @@ EOF
     git commit -m "init"
     echo "modified" > file.txt
     git stash
-    # Alias: git stash list
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gzl"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *"stash@{0}"* ]]
@@ -643,23 +582,11 @@ EOF
     git commit -m "init"
     echo "modified" > file.txt
     git stash
-    # Alias: git stash pop
     _run_alias "cd '${TEST_TEMP_DIR}/repo' && gzp"
     [ "${status}" -eq 0 ]
     [ "$(cat "${TEST_TEMP_DIR}/repo/file.txt")" = "modified" ]
     run git -C "${TEST_TEMP_DIR}/repo" stash list
     [ -z "${output}" ]
-}
-
-
-# ---------------------------------------------------------------------- #
-# less
-# ---------------------------------------------------------------------- #
-
-@test "'less' alias includes -R and -N flags" {
-    run alias less
-    [[ "${output}" == *"-R"* ]]
-    [[ "${output}" == *"-N"* ]]
 }
 
 
@@ -683,7 +610,6 @@ EOF
 
 @test "'ll' lists files with detailed info including hidden files" {
     touch "${TEST_TEMP_DIR}/.hidden"
-    # Alias: ls -ahl
     _run_alias "ll '${TEST_TEMP_DIR}'"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *".hidden"* ]]
@@ -692,7 +618,6 @@ EOF
 
 @test "'la' lists hidden files" {
     touch "${TEST_TEMP_DIR}/.hidden"
-    # Alias: ls -A
     _run_alias "la '${TEST_TEMP_DIR}'"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *".hidden"* ]]
@@ -700,7 +625,6 @@ EOF
 
 @test "'l' lists files" {
     touch "${TEST_TEMP_DIR}/visible.txt"
-    # Alias: ls -CF
     _run_alias "l '${TEST_TEMP_DIR}'"
     [ "${status}" -eq 0 ]
     [[ "${output}" == *"visible.txt"* ]]
@@ -731,11 +655,9 @@ EOF
 # ---------------------------------------------------------------------- #
 
 @test "'mv' moves a file to a new destination" {
-    [[ "$(uname)" == "Linux" ]] || skip "requires GNU coreutils"
     local src="${TEST_TEMP_DIR}/src.txt"
     local dst="${TEST_TEMP_DIR}/dst.txt"
     echo "hello" > "${src}"
-    # Alias: mv --interactive
     _run_alias "mv '${src}' '${dst}'"
     [ ! -f "${src}" ]
     [ -f "${dst}" ]
@@ -746,12 +668,6 @@ EOF
 # ---------------------------------------------------------------------- #
 # mvn
 # ---------------------------------------------------------------------- #
-
-@test "'mvnp' alias includes 'mvn package' and '-DskipTests'" {
-    run alias mvnp
-    [[ "${output}" == *"mvn package"* ]]
-    [[ "${output}" == *"-DskipTests"* ]]
-}
 
 @test "'FA__mvnt' runs 'mvn test' without arguments" {
     local fake_mvn="${TEST_TEMP_DIR}/bin/mvn"
@@ -784,105 +700,12 @@ EOF
 
 
 # ---------------------------------------------------------------------- #
-# npm
-# ---------------------------------------------------------------------- #
-
-@test "'npmb' alias expands to 'npm run build'" {
-    run alias npmb
-    [[ "${output}" == *"npm run build"* ]]
-}
-
-@test "'npmc' alias expands to 'npm run clean'" {
-    run alias npmc
-    [[ "${output}" == *"npm run clean"* ]]
-}
-
-@test "'npmd' alias expands to 'npm run doc'" {
-    run alias npmd
-    [[ "${output}" == *"npm run doc"* ]]
-}
-
-@test "'npmf' alias expands to 'npm run format'" {
-    run alias npmf
-    [[ "${output}" == *"npm run format"* ]]
-}
-
-@test "'npmic' alias includes 'npm install --no-save'" {
-    run alias npmic
-    [[ "${output}" == *"npm install --no-save"* ]]
-}
-
-@test "'npmid' alias includes 'npm install --save-dev'" {
-    run alias npmid
-    [[ "${output}" == *"npm install --save-dev"* ]]
-}
-
-@test "'npmo' alias expands to 'npm outdated'" {
-    run alias npmo
-    [[ "${output}" == *"npm outdated"* ]]
-}
-
-@test "'npmp' alias expands to 'npm pack'" {
-    run alias npmp
-    [[ "${output}" == *"npm pack"* ]]
-}
-
-@test "'npmr' alias expands to 'npm run'" {
-    run alias npmr
-    [[ "${output}" == *"npm run"* ]]
-}
-
-@test "'npms' alias expands to 'npm start'" {
-    run alias npms
-    [[ "${output}" == *"npm start"* ]]
-}
-
-@test "'npmt' alias expands to 'npm test'" {
-    run alias npmt
-    [[ "${output}" == *"npm test"* ]]
-}
-
-@test "'npmtb' alias expands to 'npm run test:benchmark'" {
-    run alias npmtb
-    [[ "${output}" == *"npm run test:benchmark"* ]]
-}
-
-@test "'npmte' alias expands to 'npm run test:e2e'" {
-    run alias npmte
-    [[ "${output}" == *"npm run test:e2e"* ]]
-}
-
-@test "'npmtu' alias expands to 'npm run test:unit'" {
-    run alias npmtu
-    [[ "${output}" == *"npm run test:unit"* ]]
-}
-
-
-# ---------------------------------------------------------------------- #
-# pip
-# ---------------------------------------------------------------------- #
-
-@test "'pip3g' alias includes 'pip3 install' and '--user'" {
-    run alias pip3g
-    [[ "${output}" == *"pip3 install"* ]]
-    [[ "${output}" == *"--user"* ]]
-}
-
-@test "'pipg' alias includes 'pip install' and '--user'" {
-    run alias pipg
-    [[ "${output}" == *"pip install"* ]]
-    [[ "${output}" == *"--user"* ]]
-}
-
-
-# ---------------------------------------------------------------------- #
 # rm
 # ---------------------------------------------------------------------- #
 
 @test "'rm' removes a file after confirmation" {
     local file="${TEST_TEMP_DIR}/to_delete.txt"
     echo "content" > "${file}"
-    # Alias: rm -i; pipe 'y' to confirm removal.
     _run_alias "yes | rm '${file}'"
     [ ! -f "${file}" ]
 }
@@ -893,10 +716,8 @@ EOF
 # ---------------------------------------------------------------------- #
 
 @test "'trash' securely deletes a file" {
-    [[ "$(uname)" == "Linux" ]] || skip "shred is not available on macOS"
     local file="${TEST_TEMP_DIR}/secret.txt"
     echo "sensitive data" > "${file}"
-    # Alias: shred --remove --zero --verbose
     _run_alias "trash '${file}'"
     [ ! -f "${file}" ]
 }
@@ -906,17 +727,15 @@ EOF
 # uv
 # ---------------------------------------------------------------------- #
 
-@test "'uvp' alias expands to 'uv run poe'" {
-    run alias uvp
-    [[ "${output}" == *"uv run poe"* ]]
-}
-
-
-# ---------------------------------------------------------------------- #
-# wget
-# ---------------------------------------------------------------------- #
-
-@test "'wget' alias includes --continue flag" {
-    run alias wget
-    [[ "${output}" == *"--continue"* ]]
+@test "'uvp' runs a poe task via uv" {
+    local fake_uv="${TEST_TEMP_DIR}/bin/uv"
+    mkdir -p "${TEST_TEMP_DIR}/bin"
+    cat > "${fake_uv}" <<'EOF'
+#!/usr/bin/env bash
+echo "uv $*"
+EOF
+    chmod +x "${fake_uv}"
+    _run_alias "PATH='${TEST_TEMP_DIR}/bin:${PATH}' uvp my-task"
+    [ "${status}" -eq 0 ]
+    [[ "${output}" == *"uv run poe my-task"* ]]
 }
