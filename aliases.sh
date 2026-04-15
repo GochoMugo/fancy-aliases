@@ -402,12 +402,14 @@ alias rm='rm -i'
 # shred
 # ---------------------------------------------------------------------- #
 
-# DOC: Deletes a file securely by overwriting it before removal (uses shred on Linux; falls back to rm on macOS where shred is unavailable).
+# DOC: Deletes a file securely by overwriting it before removal
+# (uses shred on Linux; unavailable on macOS).
 function FA__trash() {
     if command -v shred >/dev/null 2>&1; then
         shred --remove --zero --verbose "$@"
     else
-        rm -f "$@"
+        echo "trash: shred is not available on this system" >&2
+        return 1
     fi
 }
 alias trash='FA__trash'

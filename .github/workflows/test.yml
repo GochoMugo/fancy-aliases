@@ -2,9 +2,7 @@ name: Test
 
 on:
   push:
-    branches: ["**"]
   pull_request:
-    branches: ["**"]
 
 permissions:
   contents: read
@@ -19,12 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install bats (Linux)
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y bats
-
-      - name: Install bats (macOS)
-        if: runner.os == 'macOS'
+      - name: Install bats
         run: brew install bats-core
 
       - name: Run tests

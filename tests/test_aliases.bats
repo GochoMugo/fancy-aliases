@@ -713,6 +713,7 @@ EOF
 # ---------------------------------------------------------------------- #
 
 @test "'trash' securely deletes a file" {
+    command -v shred >/dev/null 2>&1 || skip "shred is not available on this system"
     local file="${TEST_TEMP_DIR}/secret.txt"
     echo "sensitive data" > "${file}"
     _run_alias "trash '${file}'"
