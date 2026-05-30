@@ -402,8 +402,6 @@ alias rm='rm -i'
 # shred
 # ---------------------------------------------------------------------- #
 
-# DOC: Deletes a file securely by overwriting it before removal
-# (uses shred on Linux; unavailable on macOS).
 function FA__trash() {
     if command -v shred >/dev/null 2>&1; then
         shred --remove --zero --verbose "$@"
@@ -412,6 +410,9 @@ function FA__trash() {
         return 1
     fi
 }
+
+# DOC: Deletes a file securely by overwriting it before removal
+# (uses shred on Linux; unavailable on macOS).
 alias trash='FA__trash'
 
 
